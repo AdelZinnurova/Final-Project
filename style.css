@@ -1,0 +1,274 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, p, ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset,
+legend {
+    all: unset;
+}
+
+/* ================ Общие стили ================ */
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    line-height: 24px;
+    background-color: #FAFAFC;
+}
+
+/* ============== Стили для хедера ============= */
+
+.container {
+    height: 100%;
+    width: 100%;
+    max-width: 1152px;
+    margin-left: auto;
+    margin-right: auto;
+    /*border: 1px solid red;*/
+}
+
+header {
+    padding: 18px 0;
+    background-color: #FFFFFF;
+}
+
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text {
+    display: flex;
+    align-items: center;
+}
+
+.total-notes {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 14px;
+    margin-right: 4px;
+}
+
+/* ======== Стили для основной секции ======== */
+
+.form {
+    margin-top: 24px;
+    background-color: #FFFFFF;
+    padding: 24px 24px;
+    border: 1px solid #E8E8E8;
+    border-radius: 4px;
+    box-shadow: 0 8px 12px 0 #0B0C0D14,
+    0 16px 24px 0 #0B0C0D0A,
+    0 1px 2px 0 #0B0C0D14;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.notesName,
+.notesDescription,
+.selectColor {
+    font-size: 12px;
+    color: #919191;
+}
+
+.notesNameText {
+    max-width: 344px;
+    max-height: 36px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 12px;
+
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #919191;
+}
+
+.notesDescriptionText {
+    width: 848px;
+    height: 84px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 12px;
+
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #919191;
+}
+
+.radio-list {
+    display: flex;
+    gap: 14px;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 6px;
+    margin-bottom: 14px;
+}
+
+.radio {
+    appearance: none;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: green;
+}
+
+.radio[value="red"] {
+    background-color: #F37D7D;
+}
+
+.radio[value="green"] {
+    background-color: #C2F37D;
+}
+
+.radio[value="blue"] {
+    background-color: #7DE1F3;
+}
+
+.radio[value="yellow"] {
+    background-color: #F3DB7D;
+}
+
+.radio[value="purple"] {
+    background-color: #E77DF3;
+}
+
+.radio:checked {
+    border-color: white;
+    box-shadow: 0 0 0 3px white, /* Внутренняя обводка для создания промежутка */
+    0 0 0 4.5px #007BFF; /* Внешняя обводка */
+}
+
+.buttonAddNote{
+    max-width: 232px;
+    max-height: 36px;
+    padding: 6px 24px;
+    border-radius: 10px;
+    border: none;
+    background-color: #457CDC;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.plusIcon{
+    width: 12px;
+    height: 12px;
+    margin-right: 14px;
+}
+
+.Description{
+    display: flex;
+    flex-direction: column;
+}
+
+.DescriptionAndColor{
+    display: flex;
+    justify-content: space-between;
+}
+
+.filterBox{
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.TextNoNotes{
+    text-align: center;
+}
+
+.no-notes{
+    margin-top: 138px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.notes-list{
+    list-style: none; /* Убирает маркер */
+    padding: 0;       /* Убирает отступы по умолчанию */
+    margin: 0;        /* Убирает внешние отступы, если нужно */
+}
+
+
+
+
+
+
+
+.note{
+    width: 368px;
+    height: 216px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 8px 0 #0B0C0D14,
+    0 8px 16px 0 #0B0C0D0A,
+    0 1px 2px 0 #0B0C0D14;
+    background-color: #FFFFFF;
+}
+
+.note-title{
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 12px;
+}
+
+.note-content{
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    padding: 12px;
+}
+
+.note-added{
+    width:230px;
+    height: 48px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    background-color: #47B27D;
+
+    box-shadow: 0 8px 12px 0 #0B0C0D14,
+    0 16px 24px 0 #0B0C0D0A,
+    0 1px 2px 0 #0B0C0D14;
+
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #FFFFFF;
+
+}
+
+/*.messages-box.note-added{*/
+/*    display: flex;*/
+/*    justify-content: flex-end;*/
+/*}*/
