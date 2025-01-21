@@ -109,6 +109,12 @@ const view = {
         const messagesBox = document.querySelector('.messages-box')
         messagesBox.textContent = message
         messagesBox.classList.add('note-added')
+        messagesBox.style.display = 'block'; // Показываем сообщение
+
+        // Скрываем сообщение через 3 секунды
+        setTimeout(() => {
+            messagesBox.style.display = 'none'; // Скрываем сообщение
+        }, 3000);
     }
 }
 
@@ -118,6 +124,8 @@ const controller = {
         if (title.trim() !== '' && content.trim() !== '') {
             model.addNote(title, content, color)
             view.showMessage('Заметка добавлена!')
+        } else {
+            view.showMessage('Заполните все поля!')
         }
     }
 }
