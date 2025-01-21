@@ -124,26 +124,26 @@ header {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background-color: green;
+    /*background-color: green;*/
 }
 
-.radio[value="red"] {
+.radio[value="#F37D7D"] {
     background-color: #F37D7D;
 }
 
-.radio[value="green"] {
+.radio[value="#C2F37D"] {
     background-color: #C2F37D;
 }
 
-.radio[value="blue"] {
+.radio[value="#7DE1F3"] {
     background-color: #7DE1F3;
 }
 
-.radio[value="yellow"] {
+.radio[value="#F3DB7D"] {
     background-color: #F3DB7D;
 }
 
-.radio[value="purple"] {
+.radio[value="#E77DF3"] {
     background-color: #E77DF3;
 }
 
@@ -218,11 +218,19 @@ header {
 }
 
 .note-title {
+    width: 368px;
+    border-top-left-radius: 10px; /* Скругление верхнего левого угла */
+    border-top-right-radius: 10px; /* Скругление верхнего правого угла */
+    border: none;
+
     font-family: Montserrat;
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
     padding: 12px;
+
+
+
 }
 
 .note-content {

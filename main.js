@@ -1,9 +1,9 @@
 const colors = {
-    GREEN: 'green',
-    BLUE: 'blue',
-    RED: 'red',
-    YELLOW: 'yellow',
-    PURPLE: 'purple'
+    GREEN: '#C2F37D',
+    BLUE: '#7DE1F3',
+    RED: '#F37D7D',
+    YELLOW: '#F3DB7D',
+    PURPLE: '#E77DF3'
 }
 
 const MOCK_NOTES = [
@@ -46,7 +46,7 @@ const view = {
         const form = document.querySelector('.form')
         const inputTitle = document.querySelector('.notesNameText')
         const inputDescription = document.querySelector('.notesDescriptionText')
-        const inputColor = document.querySelector('.radio')
+        const inputColor = document.querySelector('.radio:checked');
 
         form.addEventListener('submit', (event) => {
 
@@ -56,12 +56,13 @@ const view = {
             event.preventDefault() // Предотвращаем стандартное поведение формы
             const title = inputTitle.value.trim()// смотрим название заметки
             const content = inputDescription.value.trim() // смотрим описание заметки
-            const color = inputColor.value; // смотрим выбранный цвет заметки
+            const color = document.querySelector('.radio:checked')?.value || ''; // Получаем выбранный цвет // смотрим выбранный цвет заметки
 
             if (controller.addNote(title, content, color)) {
                 inputTitle.value = ''
                 inputDescription.value = ''
-                inputColor.value = ''
+                // inputColor.value = ''
+                inputColor.checked = false;
             }
         })
     },
@@ -90,7 +91,7 @@ const view = {
         for (let note of notes) {
             notesHTML += `
         <li id="${note.id}" class="note">
-        <b class="note-title">${note.title}</b>
+        <p class="note-title" style="background-color: ${note.color}">${note.title}</p>
         <p class="note-content">${note.content}</p>
         </li>
         `
@@ -100,7 +101,6 @@ const view = {
     },
 
     renderNotesCount(notes) {
-
         const countNotes = document.querySelector('.note-count')
         countNotes.textContent = notes.length; // Устанавливаем текст равный количеству заметок
     },
