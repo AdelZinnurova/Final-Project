@@ -54,15 +54,15 @@ const view = {
             // передаем данные в контроллер
 
             event.preventDefault() // Предотвращаем стандартное поведение формы
-            const title = inputTitle.value // смотрим название заметки
-            const content = inputDescription.value // смотрим описание заметки
+            const title = inputTitle.value.trim()// смотрим название заметки
+            const content = inputDescription.value.trim() // смотрим описание заметки
             const color = inputColor.value; // смотрим выбранный цвет заметки
 
-            controller.addNote(title, content, color)
-
-            inputTitle.value = ''
-            inputDescription.value = ''
-            inputColor.value = ''
+            if (controller.addNote(title, content, color)) {
+                inputTitle.value = ''
+                inputDescription.value = ''
+                inputColor.value = ''
+            }
         })
     },
 
@@ -99,7 +99,7 @@ const view = {
         this.renderNotesCount(notes); // Обновляем количество заметок
     },
 
-    renderNotesCount(notes){
+    renderNotesCount(notes) {
 
         const countNotes = document.querySelector('.note-count')
         countNotes.textContent = notes.length; // Устанавливаем текст равный количеству заметок
@@ -127,15 +127,21 @@ const view = {
 
 const controller = {
     addNote(title, content, color) {
+        if (title.length > 50) {
+            view.showMessage('Максимальная длина заголовка - 50 символов', true);
+            return false; // Возвращаем false при ошибке;
+        }
         if (title.trim() !== '' && content.trim() !== '') {
-            model.addNote(title, content, color)
-            view.showMessage('Заметка добавлена!')
+            model.addNote(title, content, color);
+            view.showMessage('Заметка добавлена!');
+            return true; // Возвращаем true при успешном добавлении
         } else {
-            view.showMessage('Заполните все поля!', true)
+            view.showMessage('Заполните все поля!', true);
+            return false; // Возвращаем false при ошибке
         }
     }
-}
 
+}
 
 function init() {
     view.init()

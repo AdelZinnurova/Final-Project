@@ -149,11 +149,10 @@ header {
 
 .radio:checked {
     border-color: white;
-    box-shadow: 0 0 0 3px white, /* Внутренняя обводка для создания промежутка */
-    0 0 0 4.5px #007BFF; /* Внешняя обводка */
+    box-shadow: 0 0 0 3px white, /* Внутренняя обводка для создания промежутка */ 0 0 0 4.5px #007BFF; /* Внешняя обводка */
 }
 
-.buttonAddNote{
+.buttonAddNote {
     max-width: 232px;
     max-height: 36px;
     padding: 6px 24px;
@@ -168,61 +167,46 @@ header {
     text-align: center;
 }
 
-.plusIcon{
+.plusIcon {
     width: 12px;
     height: 12px;
     margin-right: 14px;
 }
 
-.Description{
+.Description {
     display: flex;
     flex-direction: column;
 }
 
-.DescriptionAndColor{
+.DescriptionAndColor {
     display: flex;
     justify-content: space-between;
 }
 
-.filterBox{
+.filterBox {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
     margin-top: 24px;
 }
 
-.TextNoNotes{
+.TextNoNotes {
     text-align: center;
 }
 
-.no-notes{
+.no-notes {
     margin-top: 138px;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-.notes-list{
+.notes-list {
     list-style: none; /* Убирает маркер */
-    padding: 0;       /* Убирает отступы по умолчанию */
-    margin: 0;        /* Убирает внешние отступы, если нужно */
+    padding: 0; /* Убирает отступы по умолчанию */
+    margin: 0; /* Убирает внешние отступы, если нужно */
 }
 
 
-
-
-
-
-
-.note{
+.note {
     width: 368px;
     height: 216px;
     border-radius: 10px;
@@ -233,7 +217,7 @@ header {
     background-color: #FFFFFF;
 }
 
-.note-title{
+.note-title {
     font-family: Montserrat;
     font-size: 16px;
     font-weight: 500;
@@ -241,7 +225,7 @@ header {
     padding: 12px;
 }
 
-.note-content{
+.note-content {
     font-family: Montserrat;
     font-size: 14px;
     font-weight: 400;
@@ -249,8 +233,8 @@ header {
     padding: 12px;
 }
 
-.success{
-    width:230px;
+.success {
+    width: 230px;
     height: 48px;
     padding: 12px 24px;
     border-radius: 10px;
@@ -267,8 +251,8 @@ header {
     color: #FFFFFF;
 }
 
-.error{
-    width:230px;
+.error {
+    width: 427px;
     height: 48px;
     padding: 12px 24px;
     border-radius: 10px;
