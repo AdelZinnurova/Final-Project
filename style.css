@@ -249,12 +249,30 @@ header {
     padding: 12px;
 }
 
-.note-added{
+.success{
     width:230px;
     height: 48px;
     padding: 12px 24px;
     border-radius: 10px;
     background-color: #47B27D;
+
+    box-shadow: 0 8px 12px 0 #0B0C0D14,
+    0 16px 24px 0 #0B0C0D0A,
+    0 1px 2px 0 #0B0C0D14;
+
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.error{
+    width:230px;
+    height: 48px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    background-color: #F23D5B;
 
     box-shadow: 0 8px 12px 0 #0B0C0D14,
     0 16px 24px 0 #0B0C0D0A,

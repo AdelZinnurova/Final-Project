@@ -105,10 +105,16 @@ const view = {
         countNotes.textContent = notes.length; // Устанавливаем текст равный количеству заметок
     },
 
-    showMessage(message) {
+    showMessage(message, isError = false) {
         const messagesBox = document.querySelector('.messages-box')
         messagesBox.textContent = message
-        messagesBox.classList.add('note-added')
+        if (isError) {
+            messagesBox.classList.remove('success')
+            messagesBox.classList.add('error')
+        } else {
+            messagesBox.classList.remove('error')
+            messagesBox.classList.add('success')
+        }
         messagesBox.style.display = 'block'; // Показываем сообщение
 
         // Скрываем сообщение через 3 секунды
@@ -125,14 +131,10 @@ const controller = {
             model.addNote(title, content, color)
             view.showMessage('Заметка добавлена!')
         } else {
-            view.showMessage('Заполните все поля!')
+            view.showMessage('Заполните все поля!', true)
         }
     }
 }
-
-
-
-
 
 
 function init() {
