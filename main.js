@@ -1,29 +1,7 @@
-const colors = {
-    GREEN: '#C2F37D',
-    BLUE: '#7DE1F3',
-    RED: '#F37D7D',
-    YELLOW: '#F3DB7D',
-    PURPLE: '#E77DF3'
-}
 
-const MOCK_NOTES = [
-    {
-        id: 1,
-        title: 'Работа с формами',
-        content: 'К определённым полям формы можно обратиться через form.elements по значению, указанному в атрибуте name',
-        color: colors.GREEN,
-        isFavorite: false,
-    },
-    {
-        id: 2,
-        title: 'Flexbox (CSS)',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        color: colors.YELLOW,
-        isFavorite: false,
-    }
-    // ...
-]
-
+// -------------------------------------
+//              MODEL
+// -------------------------------------
 
 const model = {
     notes: [],
@@ -68,6 +46,10 @@ const model = {
 
 }
 
+// -------------------------------------
+//                VIEW
+// -------------------------------------
+
 const view = {
     init() {
         this.renderNotes(model.notes)
@@ -83,12 +65,11 @@ const view = {
             event.preventDefault() // Предотвращаем стандартное поведение формы
             const title = inputTitle.value.trim()// смотрим название заметки
             const content = inputDescription.value.trim() // смотрим описание заметки
-            const color = document.querySelector('.radio:checked')?.value || ''; // Получаем выбранный цвет // смотрим выбранный цвет заметки
+            const color = document.querySelector('.radio:checked')?.value || ''; // смотрим выбранный цвет заметки
 
             if (controller.addNote(title, content, color)) {
                 inputTitle.value = ''
                 inputDescription.value = ''
-                // inputColor.value = ''
                 inputColor.checked = false;
             }
         })
@@ -193,6 +174,9 @@ const view = {
     }
 }
 
+// -------------------------------------
+//              CONTROLLER
+// -------------------------------------
 
 const controller = {
     addNote(title, content, color) {
@@ -215,11 +199,9 @@ const controller = {
         view.showMessage('Заметка удалена!')
     },
 
-// Избранное
+    // Избранное
     toggleFavorite(noteId) {
         model.toggleFavorite(noteId);
-        // Хотите - выводите сообщение:
-        // view.showMessage('Статус избранного изменён!');
     },
 
     // Включить/выключить «Показывать только избранные»
