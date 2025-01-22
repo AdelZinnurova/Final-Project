@@ -258,6 +258,10 @@ header {
     background-image: url('assets/img/add-to-favourite.svg'); /* Путь к иконке "избранное" */
 }
 
+.add-to-favourites.favourited {
+    background: url('assets/img/fav-on.svg') no-repeat center / contain;
+}
+
 .delete-button {
     background-image: url('assets/img/delete-button.svg'); /* Путь к иконке "удаление" */
 }

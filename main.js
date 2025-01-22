@@ -27,6 +27,7 @@ const MOCK_NOTES = [
 
 const model = {
     notes: [],
+    isShowOnlyFavorite: false,
 
     addNote(title, content, color) {
         const newNote = {id: new Date().getTime(), title: title, content: content, color: color, isFavorite: false}
@@ -38,9 +39,34 @@ const model = {
     delete(noteId) {
         this.notes = this.notes.filter((note) => note.id !== noteId);
         view.renderNotes(this.notes);
-    }
-}
+    },
 
+    // Переключение флага избранного
+    toggleFavorite(noteId) {
+        const note = this.notes.find((note) => note.id === noteId);
+        if (note) {
+            note.isFavorite = !note.isFavorite;
+        }
+        this.updateNotesView();
+    },
+
+    // Установить/снять флаг «показывать только избранные»
+    toggleShowOnlyFavorite(isShowOnlyFavorite) {
+        this.isShowOnlyFavorite = isShowOnlyFavorite;
+        this.updateNotesView();
+    },
+
+    // Обновить отображение заметок
+    updateNotesView() {
+        let notesToRender = this.notes;
+        if (this.isShowOnlyFavorite) {
+            notesToRender = notesToRender.filter(note => note.isFavorite);
+        }
+        view.renderNotes(notesToRender);
+        view.renderNotesCount(notesToRender);
+    }
+
+}
 
 const view = {
     init() {
@@ -54,10 +80,6 @@ const view = {
         const inputColor = document.querySelector('.radio:checked');
 
         form.addEventListener('submit', (event) => {
-
-            // получаем данные из полей формы
-            // передаем данные в контроллер
-
             event.preventDefault() // Предотвращаем стандартное поведение формы
             const title = inputTitle.value.trim()// смотрим название заметки
             const content = inputDescription.value.trim() // смотрим описание заметки
@@ -71,6 +93,7 @@ const view = {
             }
         })
 
+        //Обработчик события для удаления заметок
         const ul = document.querySelector('.notes-list')
         ul.addEventListener('click', (event) => {
             if(event.target.classList.contains('delete-button')){
@@ -78,6 +101,22 @@ const view = {
                 controller.delete(noteId)
             }
         })
+
+        //Обработчик события добавление/удаление из избранного
+        ul.addEventListener('click', (event) => {
+            if (event.target.classList.contains('add-to-favourites')
+                || event.target.closest('.add-to-favourites')) {
+                const button = event.target.closest('.add-to-favourites');
+                const noteId = +button.closest('.note').id;
+                controller.toggleFavorite(noteId);
+            }
+        });
+
+        // Чекбокс «Показать только избранные»
+        const favoritesCheckbox = document.querySelector('#favorites-filter');
+        favoritesCheckbox.addEventListener('change', (event) => {
+            controller.toggleShowOnlyFavorite(event.target.checked);
+        });
     },
 
     renderNotes(notes) {
@@ -102,18 +141,29 @@ const view = {
         let notesHTML = ''
 
         for (let note of notes) {
+            let favouritesClass = '';
+            if (note.isFavorite) {
+                favouritesClass = 'favourited';
+            }
+
             notesHTML += `
-        <li id="${note.id}" class="note">
-            <div class="note-title" style="background-color: ${note.color}">
-                <span>${note.title}</span>
-                <div class="note-actions">
-                    <button class="add-to-favourites" aria-label="Добавить в избранное"></button>
-                    <button class="delete-button" aria-label="Удалить заметку"></button>
-                </div>
-            </div>
-        <p class="note-content">${note.content}</p>
-        </li>
-        `
+                <li id="${note.id}" class="note">
+                    <div class="note-title" style="background-color: ${note.color}">
+                        <span>${note.title}</span>
+                        <div class="note-actions">
+                            <button 
+                                class="add-to-favourites ${favouritesClass}" 
+                                aria-label="Добавить/убрать из избранного"
+                            ></button>
+                            <button 
+                                class="delete-button" 
+                                aria-label="Удалить заметку"
+                            ></button>
+                        </div>
+                    </div>
+                    <p class="note-content">${note.content}</p>
+                </li>
+            `;
         }
         list.innerHTML = notesHTML
         this.renderNotesCount(notes); // Обновляем количество заметок
@@ -163,6 +213,18 @@ const controller = {
     delete(noteId) {
         model.delete(noteId)
         view.showMessage('Заметка удалена!')
+    },
+
+// Избранное
+    toggleFavorite(noteId) {
+        model.toggleFavorite(noteId);
+        // Хотите - выводите сообщение:
+        // view.showMessage('Статус избранного изменён!');
+    },
+
+    // Включить/выключить «Показывать только избранные»
+    toggleShowOnlyFavorite(isShowOnlyFavorite) {
+        model.toggleShowOnlyFavorite(isShowOnlyFavorite);
     }
 }
 
