@@ -33,6 +33,11 @@ const model = {
         this.notes.unshift(newNote);
 
         view.renderNotes(this.notes);
+    },
+
+    delete(noteId) {
+        this.notes = this.notes.filter((note) => note.id !== noteId);
+        view.renderNotes(this.notes);
     }
 }
 
@@ -65,6 +70,14 @@ const view = {
                 inputColor.checked = false;
             }
         })
+
+        const ul = document.querySelector('.notes-list')
+        ul.addEventListener('click', (event) => {
+            if(event.target.classList.contains('delete-button')){
+                const noteId = +event.target.closest('.note').id;
+                controller.delete(noteId)
+            }
+        })
     },
 
     renderNotes(notes) {
@@ -91,7 +104,13 @@ const view = {
         for (let note of notes) {
             notesHTML += `
         <li id="${note.id}" class="note">
-        <p class="note-title" style="background-color: ${note.color}">${note.title}</p>
+            <div class="note-title" style="background-color: ${note.color}">
+                <span>${note.title}</span>
+                <div class="note-actions">
+                    <button class="add-to-favourites" aria-label="Добавить в избранное"></button>
+                    <button class="delete-button" aria-label="Удалить заметку"></button>
+                </div>
+            </div>
         <p class="note-content">${note.content}</p>
         </li>
         `
@@ -139,8 +158,12 @@ const controller = {
             view.showMessage('Заполните все поля!', true);
             return false; // Возвращаем false при ошибке
         }
-    }
+    },
 
+    delete(noteId) {
+        model.delete(noteId)
+        view.showMessage('Заметка удалена!')
+    }
 }
 
 function init() {

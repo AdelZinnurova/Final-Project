@@ -223,6 +223,9 @@ header {
 }
 
 .note-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 368px;
     border-top-left-radius: 10px; /* Скругление верхнего левого угла */
     border-top-right-radius: 10px; /* Скругление верхнего правого угла */
@@ -233,10 +236,63 @@ header {
     font-weight: 500;
     line-height: 24px;
     padding: 12px;
-
-
-
 }
+
+.note-actions {
+    display: flex; /* Для расположения кнопок в ряд */
+    gap: 12px; /* Отступ между кнопками */
+}
+
+.add-to-favourites,
+.delete-button {
+    width: 24px;
+    height: 24px;
+    background-color: transparent; /* Прозрачный фон */
+    border: none; /* Убираем рамку */
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.add-to-favourites {
+    background-image: url('assets/img/add-to-favourite.svg'); /* Путь к иконке "избранное" */
+}
+
+.delete-button {
+    background-image: url('assets/img/delete-button.svg'); /* Путь к иконке "удаление" */
+}
+
+
+
+
+/*.add-to-favourites{*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    background-image: url('assets/img/add-to-favourite.svg'); !* путь к изображению *!*/
+/*    background-size: cover; !* изображение полностью заполняет кнопку *!*/
+/*    background-repeat: no-repeat; !* отключает повторение изображения *!*/
+/*    background-color: transparent;*/
+/*    border: none; !* убирает стандартную рамку кнопки *!*/
+/*    cursor: pointer; !* курсор при наведении *!*/
+
+/*}*/
+
+/*.delete-button{*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    background-image: url('assets/img/delete-button.svg'); !* путь к изображению *!*/
+/*    background-size: cover; !* изображение полностью заполняет кнопку *!*/
+/*    background-repeat: no-repeat; !* отключает повторение изображения *!*/
+/*    background-color: transparent;*/
+/*    border: none; !* убирает стандартную рамку кнопки *!*/
+/*    cursor: pointer; !* курсор при наведении *!*/
+/*}*/
+
+
+
+
+
+
 
 .note-content {
     font-family: Montserrat;
